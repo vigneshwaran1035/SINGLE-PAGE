@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MULTIPLE PAGE USING REACT</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/templatemo-style.css">
+<!--
+    
+TemplateMo 556 Catalog-Z
+
+https://templatemo.com/tm-556-catalog-z
+
+-->
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+
+
+    <script src="assets/js/plugins.js"></script>
+    <script>
+        $(window).on("load", function() {
+            $('body').addClass('loaded');
+        });
+    </script>
+
+<script src="assets/js/plugins.js"></script>
+<script>
+    $(window).on("load", function() {
+        $('body').addClass('loaded');
+    });
+
+    $(function(){
+       
+
+        function setVideoSize() {
+            const vidWidth = 1280;
+            const vidHeight = 720;
+            const maxVidHeight = 400;
+            let windowWidth = window.innerWidth;
+            let newVidWidth = windowWidth;
+            let newVidHeight = windowWidth * vidHeight / vidWidth;
+            let marginLeft = 0;
+            let marginTop = 0;
+        
+            if (newVidHeight < maxVidHeight) {
+                newVidHeight = maxVidHeight;
+                newVidWidth = newVidHeight * vidWidth / vidHeight;
+            }
+        
+            if(newVidWidth > windowWidth) {
+                marginLeft = -((newVidWidth - windowWidth) / 2);
+            }
+        
+            if(newVidHeight > maxVidHeight) {
+                marginTop = -((newVidHeight - $('#tm-video-container').height()) / 2);
+            }
+        
+            const tmVideo = $('#tm-video');
+        
+            tmVideo.css('width', newVidWidth);
+            tmVideo.css('height', newVidHeight);
+            tmVideo.css('margin-left', marginLeft);
+            tmVideo.css('margin-top', marginTop);
+        }
+
+        setVideoSize();
+
+        
+        let timeout;
+        window.onresize = function () {
+            clearTimeout(timeout);
+            timeout = setTimeout(setVideoSize, 100);
+        };
+
+             
+        const btn = $("#tm-video-control-button");
+
+        btn.on("click", function (e) {
+            const video = document.getElementById("tm-video");
+            $(this).removeClass();
+
+            if (video.paused) {
+                video.play();
+                $(this).addClass("fas fa-pause");
+            } else {
+                video.pause();
+                $(this).addClass("fas fa-play");
+            }
+        });
+    });
+</script>
+
+  </body>
+</html>
